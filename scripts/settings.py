@@ -7,3 +7,6 @@ FPS = 60
 
 #Physic
 GRAVITY = .5
+
+#for game controle
+OFFSET ={'x':0,'y':0}
