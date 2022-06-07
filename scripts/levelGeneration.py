@@ -25,6 +25,6 @@ class Level:
                     for x, y, gid, in layer:
                         tile = ti(gid)
                         if tile:
-                            cords.append(pg.Rect(OFFSET['x']+x * self.gameMap.tilewidth,OFFSET['y']+y * self.gameMap.tileheight,self.gameMap.tilewidth,self.gameMap.tileheight))
+                            cords.append(pg.Rect(x * self.gameMap.tilewidth,y * self.gameMap.tileheight,self.gameMap.tilewidth,self.gameMap.tileheight))
         return  cords
 

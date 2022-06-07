@@ -16,11 +16,12 @@ player = Player(display,WIDTH/2,HEIGHT/2,(100,200),10,0)
 
 gameObject = {
     'background': [],
-    'static': [i for i in map.GetCords('grounds')],
+    'static': map.GetCords('grounds'),
     'dynamic': []
 }
+
 while start:
-    display.blit(surf, (-OFFSET['x'],OFFSET['y']))
+    display.blit(surf, (OFFSET['x'],OFFSET['y']))
     pressedKeys = pg.key.get_pressed()
     for event in pg.event.get():
         if event.type == pg.QUIT or  pressedKeys[pg.K_ESCAPE]:
