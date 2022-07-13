@@ -11,22 +11,22 @@ display = pg.display.set_mode((WIDTH,HEIGHT))
 
 
 map = Level('../levels/test.tmx')
-surf = map.Render('background','grounds')
-player = Player(display,WIDTH/2,HEIGHT/2,(100,200),10,0)
-
+background = map.Render('background','grounds')
 gameObject = {
     'background': [],
     'static': map.GetCords('grounds'),
     'dynamic': []
 }
+player = Player(display,WIDTH/2,HEIGHT/2,(50,100),10,0)
 
 while start:
-    display.blit(surf, (OFFSET['x'],OFFSET['y']))
+    display.blit(background, (OFFSET['x'],OFFSET['y']))
+    pg.draw.rect(display,(0,145,151),player._Player__rect)
+    player.Update(gameObject['static'])
     pressedKeys = pg.key.get_pressed()
     for event in pg.event.get():
         if event.type == pg.QUIT or  pressedKeys[pg.K_ESCAPE]:
             pg.quit()
-    player.Update(gameObject['static'])
     pg.time.Clock().tick(FPS)
     pg.display.update()
 

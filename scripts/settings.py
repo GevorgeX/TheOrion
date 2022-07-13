@@ -9,4 +9,4 @@ FPS = 60
 GRAVITY = .5
 
 #for game controle
-OFFSET ={'x':0,'y':0}
+OFFSET ={'x':0,'y':-2640,'speed':30}

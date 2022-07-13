@@ -21,15 +21,14 @@ class Player:
     def __Movement(self,colliders):
         colliders = [pg.Rect(OFFSET['x']+i.x,OFFSET['y']+i.y,i.width,i.height) for i in colliders]
 
-        if (self.__rect.x < WIDTH*0.9 and self.__velocity[0]>0) or (self.__rect.x > WIDTH*0.1 and self.__velocity[0]<0) :
-            self.__rect.x += self.__velocity[0]
-        else:
-            OFFSET['x'] -= self.__velocity[0]
+        # if (self.__rect.x <WIDTH*0.3 and self.__velocity[0]<0 )or (self.__rect.x >WIDTH*0.7 and self.__velocity[0]>0):
+        #     OFFSET['x'] -= self.__velocity[0]
+        # else:
+        #     self.__rect.x += self.__velocity[0]
+        #self.__rect.x += self.__velocity[0]
+        OFFSET['x']-= self.__velocity[0]
         self.__CollisionsX(colliders)
-        if (self.__rect.y < HEIGHT * 0.9 and self.__velocity[1] > 0) or (self.__rect.y > HEIGHT * 0.1 and self.__velocity[1] < 0):
-            self.__rect.y += self.__velocity[1]
-        else:
-            OFFSET['y'] -= self.__velocity[1]
+        OFFSET['y'] += self.__velocity[1]
         self.__CollisionsY(colliders)
         if not self.__onGround:
             self.__velocity[1]+= GRAVITY

@@ -3,28 +3,30 @@ import pytmx as pt
 from settings import OFFSET
 class Level:
     def __init__(self,filename):
-        self.gameMap = pt.load_pygame(filename,pixelalpha = True)
+        self.__gameMap = pt.load_pygame(filename,pixelalpha = True)
+    def GetSize(self):
+        return (self.__gameMap.tilewidth * self.__gameMap.width,self.__gameMap.tileheight * self.__gameMap.height)
     def Render(self , *layerNames):
-        ti = self.gameMap.get_tile_image_by_gid
-        surf = pg.Surface((self.gameMap.tilewidth * self.gameMap.width,self.gameMap.tileheight * self.gameMap.height))
-        for layer in  self.gameMap.visible_layers:
+        ti = self.__gameMap.get_tile_image_by_gid
+        surf = pg.Surface((self.__gameMap.tilewidth * self.__gameMap.width,self.__gameMap.tileheight * self.__gameMap.height))
+        for layer in  self.__gameMap.visible_layers:
             if layer.name in layerNames:
                 if isinstance(layer, pt.TiledTileLayer):
                     for x, y, gid, in layer:
                         tile = ti(gid)
                         if tile:
-                            surf.blit(tile, (x * self.gameMap.tilewidth,y * self.gameMap.tileheight))
+                            surf.blit(tile, (x * self.__gameMap.tilewidth,y * self.__gameMap.tileheight))
 
         return surf
     def GetCords(self,*layerNames):
         cords = []
-        ti = self.gameMap.get_tile_image_by_gid
-        for layer in self.gameMap.visible_layers:
+        ti = self.__gameMap.get_tile_image_by_gid
+        for layer in self.__gameMap.visible_layers:
             if layer.name in layerNames:
                 if isinstance(layer, pt.TiledTileLayer):
                     for x, y, gid, in layer:
                         tile = ti(gid)
                         if tile:
-                            cords.append(pg.Rect(x * self.gameMap.tilewidth,y * self.gameMap.tileheight,self.gameMap.tilewidth,self.gameMap.tileheight))
+                            cords.append(pg.Rect(x * self.__gameMap.tilewidth,y * self.__gameMap.tileheight,self.__gameMap.tilewidth,self.__gameMap.tileheight))
         return  cords
 
